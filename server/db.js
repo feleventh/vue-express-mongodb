@@ -23,7 +23,7 @@ const loginSchema = mongoose.Schema({
 const Models = {
   Login: mongoose.model('Login', loginSchema)
 }
-
+ 
 module.exports = Models
 */
 mongoose.connect('mongodb://localhost/childBook')
@@ -31,11 +31,17 @@ const db = mongoose.connection
 db.once('error', () => console.log('Mongo connection error'))
 db.once('open', () => console.log('Mongo connection successed'))
 const bookSchema = mongoose.Schema({
+  isbn: String,
   name: String,
   author: String,
   publisher: String,
   price: Number
 })
+const adminSchema = mongoose.Schema({
+  user: String,
+  password: String
+})
 const bookModel = mongoose.model('book', bookSchema)
+const adminModel = mongoose.model('admin', adminSchema)
 
-module.exports = bookModel
+module.exports = {bookModel, adminModel}

@@ -10,8 +10,6 @@ const bodyParser = require('body-parser')
 const express = require('express')
 const app = express()
 
-const model = require('./db')
-
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(api)
@@ -25,12 +23,3 @@ app.get('*', function (req, res) {
 // 监听8088端口
 app.listen(8088)
 console.log('success listen…………')
-
-model.create({
-  name: '小王子（纯美珍藏绘本）',
-  author: '安东尼·德·圣-埃克苏佩里',
-  publisher: '中央广播电视大学出版社',
-  price: 22.10
-}, function (err) {
-  if (err) return console.log(err)
-})
